@@ -45,7 +45,7 @@ This project also contains many TypeScript example files for learning and refere
 - Tuples example: [features-learning/tuples.ts](features-learning/tuples.ts)
 - Types example: [features-learning/types.ts](features-learning/types.ts)
 
-Notes on learning content
+Notes on content
 -------------------------
 - The `features-learning` folder contains annotated TypeScript examples covering:
   - Primitive and complex type annotations
@@ -56,6 +56,19 @@ Notes on learning content
   - [features-learning/annotations/variables.ts](features-learning/annotations/variables.ts) and [features-learning/features/annotations/variables.ts](features-learning/features/annotations/variables.ts)
   - [features-learning/tuples.ts](features-learning/tuples.ts) and [features-learning/features/tuples.ts](features-learning/features/tuples.ts)
 
+## Technologies used
+
+- TypeScript — primary language for app and learning examples.
+- JavaScript (runtime) — produced bundles run in the browser.
+- Node.js & npm — dependency management and scripts.
+- Parcel — bundler used for building/serving the maps app (see maps/package.json).
+- Google Maps JavaScript API — renders the interactive map and markers.
+- @types/google.maps (optional) — improves TypeScript typings for Google Maps usage.
+- @faker-js/faker (optional) — used/optional for generating fake User/Company data.
+- HTML5 & CSS3 — map entry page and styles (maps/index.html, maps/styles.css).
+- Visual Studio Code — recommended editor; project tested in Windows environment.
+- Git — version control.
+- 
 How to run (development)
 ------------------------
 1. Install dependencies:
