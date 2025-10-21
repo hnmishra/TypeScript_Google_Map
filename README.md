@@ -1,39 +1,116 @@
- Maps Project using TypeScript
 
-## Introduction
-The Maps Project is a TypeScript-based application that demonstrates the use of maps with various features. Create user and company Clasess. Use Google API to show the User and Company
-location Marker. Also, on click of the marker, show the pop-us with the information of user and company.
-## Project Structure
-maps/ .cache/ .parcel-cache/ index.html package.json src/ index.ts User.ts Company.ts styles.css
-## Installation
-To install the project dependencies, run:
-## Usage
-To start the project, run:
-This will start the development server and open the project in your default browser.
+# Google Maps Project (TypeScript)
 
-## Features
-- **Map Initialization**: Initializes the map and adds markers.
-- **User and Company Classes**: Defines classes for user and company information.
+Overview
+--------
+A TypeScript-based  project that demonstrates:
+- A  Google Maps integration that displays markers for a `User` and a `Company`.
+- Basic TypeScript features and examples located in the learning folder (`features-learning`).
 
-## File Descriptions
+Core map app entry points and main classes
+-----------------------------------------
+- HTML entry: [maps/index.html](maps/index.html) — includes the Google Maps script and boots the app.
+- Styles: [maps/styles.css](maps/styles.css)
+- App package config: [maps/package.json](maps/package.json)
+- Main TypeScript entry: [maps/src/index.ts](maps/src/index.ts)
+- Map wrapper: [`CustomMap`](maps/src/CustomMap.ts) — [maps/src/CustomMap.ts](maps/src/CustomMap.ts)
+- Domain classes:
+  - [`User`](maps/src/User.ts) — [maps/src/User.ts](maps/src/User.ts)
+  - [`Company`](maps/src/Company.ts) — [maps/src/Company.ts](maps/src/Company.ts)
 
-### index.html
-The main HTML file that includes the map and links to the necessary scripts and styles.
+What the map app does
+---------------------
+- Initializes a Google Map (center at lat: 0, lng: 0 by default).
+- Instantiates a [`User`](maps/src/User.ts) and a [`Company`](maps/src/Company.ts).
+- Adds both to the map using [`CustomMap`](maps/src/CustomMap.ts). Markers show an info window on click with content returned from `markerContent()` on each class.
 
-### package.json
-Contains the project dependencies and scripts.
+Important implementation notes
+------------------------------
+- Google Maps script tag in [maps/index.html](maps/index.html) contains a placeholder for the API key. Replace `<API Key>` with a valid key:
+  - Example snippet in [maps/index.html](maps/index.html): `<script src="https://maps.googleapis.com/maps/api/js?key=<API Key>"></script>`
+- [`CustomMap`](maps/src/CustomMap.ts) defines a `Mappable` interface (inline) that requires:
+  - `location: { lat: number; lng: number }`
+  - `markerContent(): string`
+- [`User`](maps/src/User.ts) and [`Company`](maps/src/Company.ts) both implement the required members to be used with `CustomMap.addMarker`.
 
-### styles.css
-Contains the styles for the project.
+features-learning — TypeScript samples
+-------------------------------------
+This project also contains many TypeScript example files for learning and reference under `features-learning/`. Key examples:
+- Annotations and variables: [features-learning/annotations/variables.ts](features-learning/annotations/variables.ts)
+- Annotation examples for objects: [features-learning/annotations/objects.ts](features-learning/annotations/objects.ts)
+- Annotation examples for functions: [features-learning/annotations/functions.ts](features-learning/annotations/functions.ts)
+- Arrays examples: [features-learning/arrays.ts](features-learning/arrays.ts)
+- Classes examples: [features-learning/classes.ts](features-learning/classes.ts) — includes [`Vehicle`](features-learning/classes.ts) and [`Car`](features-learning/classes.ts)
+- Interfaces example: [features-learning/interfaces.ts](features-learning/interfaces.ts) — includes `Reportable` usage
+- Tuples example: [features-learning/tuples.ts](features-learning/tuples.ts)
+- Types example: [features-learning/types.ts](features-learning/types.ts)
 
-### src/index.ts
-The main TypeScript file that initializes the map and adds markers.
+Notes on learning content
+-------------------------
+- The `features-learning` folder contains annotated TypeScript examples covering:
+  - Primitive and complex type annotations
+  - Function types and return annotations
+  - Tuples, arrays, interfaces, and classes
+  - Destructuring with type annotations
+- Many example files have near-duplicate counterparts in `features-learning/features/` (for alternate organization). Example files:
+  - [features-learning/annotations/variables.ts](features-learning/annotations/variables.ts) and [features-learning/features/annotations/variables.ts](features-learning/features/annotations/variables.ts)
+  - [features-learning/tuples.ts](features-learning/tuples.ts) and [features-learning/features/tuples.ts](features-learning/features/tuples.ts)
 
-### src/User.ts
-Defines the `User` class with properties and methods related to user information.
+How to run (development)
+------------------------
+1. Install dependencies:
+   - Open a terminal in the `maps` folder and run:
+     ```
+     npm install
+     ```
+     (See maps/package.json for exact dependencies and scripts.)
+2. Start the dev server:
+   - Run the start or dev script from maps/package.json. Common commands:
+     ```
+     npm run start
+     ```
+     or
+     ```
+     npm run dev
+     ```
+3. Open the app:
+   - Visit the served HTML (usually `http://localhost:<port>`). The map container is defined in [maps/index.html](maps/index.html) as `<div id="map"></div>` and styled by [maps/styles.css](maps/styles.css).
 
-### src/Company.ts
-Defines the `Company` class with properties and methods related to company information.
+Google Maps API key
+-------------------
+- Add a valid Google Maps JavaScript API key in [maps/index.html](maps/index.html).
+- Ensure the API key has access to the Maps JavaScript API in the Google Cloud Console and set appropriate restrictions (HTTP referrers or IPs).
 
-## License
-This project is licensed under the MIT License.
+Development tips & known minor issues
+------------------------------------
+- The project appears to use a bundler (Parcel) indicated by `.parcel-cache/` in `maps/`. Use the dev script in [maps/package.json](maps/package.json) to run/reserve correct CLI flags.
+- Some faker usage in [`User`](maps/src/User.ts) and [`Company`](maps/src/Company.ts) is commented/placeholder. If you want realistic random data, enable `faker` usage and ensure `@faker-js/faker` is installed (check [maps/package.json](maps/package.json)).
+- TypeScript DOM/Google types:
+  - If `CustomMap` references `google.maps`, ensure `@types/google.maps` or proper TS libs are configured in tsconfig to avoid compiler errors.
+
+Project structure (relevant files)
+---------------------------------
+- maps/
+  - [maps/index.html](maps/index.html)
+  - [maps/styles.css](maps/styles.css)
+  - [maps/package.json](maps/package.json)
+  - [maps/src/index.ts](maps/src/index.ts)
+  - [maps/src/CustomMap.ts](maps/src/CustomMap.ts)
+  - [maps/src/User.ts](maps/src/User.ts)
+  - [maps/src/Company.ts](maps/src/Company.ts)
+  - .parcel-cache/ (bundler cache)
+- features-learning/
+  - [features-learning/arrays.ts](features-learning/arrays.ts)
+  - [features-learning/classes.ts](features-learning/classes.ts)
+  - [features-learning/interfaces.ts](features-learning/interfaces.ts)
+  - [features-learning/tuples.ts](features-learning/tuples.ts)
+  - [features-learning/types.ts](features-learning/types.ts)
+  - annotations/
+    - [features-learning/annotations/variables.ts](features-learning/annotations/variables.ts)
+    - [features-learning/annotations/objects.ts](features-learning/annotations/objects.ts)
+    - [features-learning/annotations/functions.ts](features-learning/annotations/functions.ts)
+  - features/ (alternate copies)
+
+License
+-------
+Project mentions MIT in earlier project documents — keep consistent and include an MIT license file if you publish.
